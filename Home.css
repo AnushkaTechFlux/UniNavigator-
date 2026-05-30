@@ -1,0 +1,586 @@
+/* Design Tokens & Shared Theme Variables */
+:root {
+	--bg-primary: #0a0e1a;
+	--card-bg: rgba(13, 20, 38, 0.55);
+	--card-border: rgba(255, 255, 255, 0.08);
+	--accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+	--accent-glow: rgba(99, 102, 241, 0.4);
+	--text-primary: #f8fafc;
+	--text-secondary: #94a3b8;
+	--input-bg: rgba(15, 23, 42, 0.6);
+	--input-border: rgba(255, 255, 255, 0.1);
+	--input-focus: #818cf8;
+	
+	--success-color: #10b981;
+	--success-bg: rgba(16, 185, 129, 0.1);
+	--success-border: rgba(16, 185, 129, 0.25);
+	
+	--warning-color: #f59e0b;
+	--warning-bg: rgba(245, 158, 11, 0.1);
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+	background-color: var(--bg-primary);
+	color: var(--text-primary);
+	min-height: 100vh;
+	position: relative;
+	overflow-x: hidden;
+}
+
+/* Page Background */
+.page-bg-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	background: 
+		radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
+		radial-gradient(circle at 85% 85%, rgba(168, 85, 247, 0.12) 0%, transparent 40%),
+		radial-gradient(circle at 50% 50%, rgba(10, 14, 26, 1) 0%, rgba(5, 7, 13, 1) 100%);
+}
+
+/* Custom Glassmorphism Navbar */
+.custom-nav {
+	background: rgba(10, 14, 26, 0.7) !important;
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+	border-bottom: 1px solid var(--card-border);
+	padding: 14px 24px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.brand-logo-img {
+	border-radius: 8px;
+	box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2);
+	border: 1px solid rgba(255,255,255,0.15);
+}
+
+.brand-logo-text {
+	font-family: 'Outfit', sans-serif;
+	font-size: 20px;
+	font-weight: 700;
+	background: linear-gradient(to right, #ffffff, #c084fc, #818cf8);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	letter-spacing: -0.3px;
+}
+
+.custom-nav .nav-link {
+	color: var(--text-secondary) !important;
+	font-size: 14.5px;
+	font-weight: 500;
+	padding: 8px 16px !important;
+	transition: color 0.3s ease;
+}
+
+.custom-nav .nav-link:hover, .custom-nav .nav-item.active .nav-link {
+	color: var(--text-primary) !important;
+}
+
+/* Logout Button */
+.logout-btn {
+	background: rgba(239, 68, 68, 0.08);
+	border: 1px solid rgba(239, 68, 68, 0.2);
+	color: #fca5a5;
+	padding: 7px 16px;
+	border-radius: 10px;
+	font-size: 13.5px;
+	font-weight: 600;
+	text-decoration: none;
+	transition: all 0.3s ease;
+	display: inline-flex;
+	align-items: center;
+}
+
+.logout-btn:hover {
+	background: rgba(239, 68, 68, 0.18);
+	border-color: rgba(239, 68, 68, 0.4);
+	color: #ef4444;
+	text-decoration: none;
+	transform: translateY(-1px);
+}
+
+/* Animations */
+@keyframes float {
+	0% { transform: translateY(0px); }
+	50% { transform: translateY(-5px); }
+	100% { transform: translateY(0px); }
+}
+
+.animate-float {
+	animation: float 4s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+	from { opacity: 0; transform: translateY(12px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+	animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Dashboard Content Grid */
+.dashboard-wrapper {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 40px 24px;
+}
+
+.welcome-banner {
+	margin-bottom: 32px;
+}
+
+.welcome-banner h1 {
+	font-family: 'Outfit', sans-serif;
+	font-size: 32px;
+	font-weight: 700;
+	color: var(--text-primary);
+	margin-bottom: 8px;
+}
+
+.user-highlight {
+	background: var(--accent-gradient);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.welcome-banner p {
+	font-size: 15.5px;
+	color: var(--text-secondary);
+}
+
+.dashboard-grid {
+	display: grid;
+	grid-template-columns: 1.1fr 1.3fr;
+	gap: 30px;
+	align-items: start;
+}
+
+/* Glass Card styling */
+.glass-card {
+	background: var(--card-bg);
+	border: 1px solid var(--card-border);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border-radius: 20px;
+	padding: 32px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+	margin-bottom: 30px;
+	transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+	border-color: rgba(255, 255, 255, 0.12);
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.card-title {
+	font-family: 'Outfit', sans-serif;
+	font-size: 22px;
+	font-weight: 600;
+	margin-bottom: 6px;
+	color: var(--text-primary);
+}
+
+.card-subtitle {
+	font-size: 13.5px;
+	color: var(--text-secondary);
+	margin-bottom: 24px;
+}
+
+/* Academic Quote Card */
+.quote-card {
+	padding: 24px;
+	background: rgba(99, 102, 241, 0.05);
+	border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+.quote-content {
+	display: flex;
+	gap: 16px;
+	align-items: flex-start;
+}
+
+.quote-icon {
+	font-size: 24px;
+	color: #818cf8;
+	opacity: 0.8;
+	margin-top: 4px;
+}
+
+.quote-content p {
+	font-size: 14.5px;
+	line-height: 1.6;
+	color: #c7d2fe;
+	margin-bottom: 0;
+	font-style: italic;
+}
+
+/* Predictor Form Inputs */
+.predictor-form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.form-input-group {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.form-input-group label {
+	font-size: 13px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	color: var(--text-secondary);
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.form-input-group label i {
+	color: #818cf8;
+}
+
+.required {
+	color: var(--error-color);
+}
+
+.ip {
+	width: 100%;
+	height: 46px;
+	border-radius: 12px;
+	border: 1.5px solid var(--input-border);
+	background: var(--input-bg);
+	padding: 0 16px;
+	font-family: inherit;
+	font-size: 14.5px;
+	color: var(--text-primary);
+	outline: none;
+	transition: all 0.3s ease;
+}
+
+.ip::placeholder {
+	color: var(--text-secondary);
+	opacity: 0.5;
+}
+
+.ip:focus {
+	border-color: var(--input-focus);
+	background: rgba(15, 23, 42, 0.85);
+	box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+/* Submit Button */
+.submit-button {
+	height: 48px;
+	border-radius: 12px;
+	border: none;
+	outline: none;
+	background: var(--accent-gradient);
+	font-family: inherit;
+	font-size: 15px;
+	font-weight: 600;
+	color: white;
+	cursor: pointer;
+	box-shadow: 0 4px 15px var(--accent-glow);
+	transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+	margin-top: 10px;
+}
+
+.submit-button:hover {
+	opacity: 0.95;
+	transform: translateY(-1.5px);
+	box-shadow: 0 8px 20px var(--accent-glow);
+}
+
+/* Right Panel: Initial Placeholder */
+.right-placeholder-card {
+	text-align: center;
+	padding: 60px 40px;
+	border-style: dashed;
+	background: rgba(13, 20, 38, 0.25);
+}
+
+.placeholder-icon {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	background: rgba(99, 102, 241, 0.1);
+	border: 1px solid rgba(99, 102, 241, 0.2);
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 24px;
+	color: #818cf8;
+	margin-bottom: 20px;
+}
+
+.right-placeholder-card h3 {
+	font-family: 'Outfit', sans-serif;
+	font-size: 20px;
+	font-weight: 600;
+	margin-bottom: 12px;
+}
+
+.right-placeholder-card p {
+	font-size: 14px;
+	color: var(--text-secondary);
+	line-height: 1.6;
+	max-width: 320px;
+	margin: 0 auto;
+}
+
+/* Results Content Container */
+.stats-banner {
+	display: flex;
+	gap: 16px;
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(255, 255, 255, 0.06);
+	border-radius: 14px;
+	padding: 16px;
+	margin-bottom: 24px;
+	justify-content: space-around;
+	text-align: center;
+}
+
+.stat-box {
+	display: flex;
+	flex-direction: column;
+}
+
+.stat-val {
+	font-family: 'Outfit', sans-serif;
+	font-size: 22px;
+	font-weight: 700;
+	background: linear-gradient(to right, #ffffff, #c084fc);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.stat-lbl {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.8px;
+	color: var(--text-secondary);
+	margin-top: 4px;
+}
+
+.results-summary-text {
+	font-size: 14px;
+	color: var(--text-secondary);
+	margin-bottom: 20px;
+	line-height: 1.5;
+}
+
+/* College Cards Results List */
+.college-cards-grid {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.college-result-card {
+	display: flex;
+	align-items: center;
+	padding: 20px;
+	border-radius: 14px;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	background: rgba(255, 255, 255, 0.02);
+	gap: 16px;
+	position: relative;
+	transition: all 0.25s ease;
+	overflow: hidden;
+}
+
+.college-result-card::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 4px;
+	background: #818cf8;
+}
+
+.college-result-card:hover {
+	background: rgba(255, 255, 255, 0.05);
+	border-color: rgba(255, 255, 255, 0.1);
+	transform: translateX(4px);
+}
+
+.college-avatar {
+	width: 46px;
+	height: 46px;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 18px;
+	color: white;
+	flex-shrink: 0;
+}
+
+/* Unique Brand Accent Lines and Avatars for Colleges */
+.iit-card::before { background: linear-gradient(to bottom, #f59e0b, #ef4444); }
+.iit-card .college-avatar { background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); }
+
+.nit-card::before { background: linear-gradient(to bottom, #3b82f6, #06b6d4); }
+.nit-card .college-avatar { background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%); }
+
+.bits-card::before { background: linear-gradient(to bottom, #a855f7, #6366f1); }
+.bits-card .college-avatar { background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%); }
+
+.srm-card::before { background: linear-gradient(to bottom, #10b981, #059669); }
+.srm-card .college-avatar { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+
+.vit-card::before { background: linear-gradient(to bottom, #ec4899, #f43f5e); }
+.vit-card .college-avatar { background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%); }
+
+.college-info {
+	flex: 1;
+}
+
+.college-info h4 {
+	font-size: 15.5px;
+	font-weight: 600;
+	color: var(--text-primary);
+	margin-bottom: 2px;
+}
+
+.college-details {
+	font-size: 12px;
+	color: var(--text-secondary);
+	margin-bottom: 6px;
+}
+
+.badge-eligible {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	font-size: 11px;
+	font-weight: 700;
+	color: var(--success-color);
+	background: var(--success-bg);
+	border: 1px solid var(--success-border);
+	padding: 2px 8px;
+	border-radius: 20px;
+}
+
+.criteria-pill {
+	font-size: 11px;
+	color: var(--text-secondary);
+	background: rgba(255, 255, 255, 0.05);
+	padding: 4px 10px;
+	border-radius: 8px;
+	font-weight: 500;
+}
+
+/* Warnings and Alerts */
+.no-match-alert {
+	background: var(--error-bg);
+	border: 1px solid rgba(239, 68, 68, 0.2);
+	border-radius: 16px;
+	padding: 24px;
+	text-align: center;
+}
+
+.info-alert {
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	color: var(--text-secondary);
+}
+
+.warning-icon {
+	font-size: 32px;
+	color: var(--error-color);
+	margin-bottom: 12px;
+}
+
+.info-alert .warning-icon {
+	color: #818cf8;
+}
+
+.no-match-alert h4 {
+	font-size: 16.5px;
+	font-weight: 600;
+	color: var(--text-primary);
+	margin-bottom: 8px;
+}
+
+.no-match-alert p {
+	font-size: 13.5px;
+	color: var(--text-secondary);
+	line-height: 1.5;
+	margin-bottom: 0;
+}
+
+/* Custom hide scrollbars */
+::-webkit-scrollbar {
+	width: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Dashboard Queries */
+@media (max-width: 991px) {
+	.dashboard-grid {
+		grid-template-columns: 1fr;
+		gap: 0;
+	}
+	
+	.dashboard-right {
+		margin-top: 10px;
+	}
+	
+	.stats-banner {
+		padding: 12px;
+	}
+	
+	.stat-val {
+		font-size: 18px;
+	}
+}
+
+@media (max-width: 576px) {
+	.dashboard-wrapper {
+		padding: 24px 12px;
+	}
+	
+	.welcome-banner h1 {
+		font-size: 26px;
+	}
+	
+	.college-result-card {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 12px;
+	}
+	
+	.criteria-pill {
+		align-self: flex-start;
+	}
+}
